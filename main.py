@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-# Project Title: Pass Hashing (https://github.com/KafetzisThomas/Pass-Hashing)
+# Project Title: Pass-Hashing (https://github.com/KafetzisThomas/Pass-Hashing)
 # Author / Project Owner: KafetzisThomas (https://github.com/KafetzisThomas)
 
 import bcrypt, getpass
