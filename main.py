@@ -15,9 +15,11 @@ def get_hashed_password(password):
 def read_hashed_password():
   """Return the hashed string from the file"""
   with open('password.txt', 'rb') as file:
-    for line in file:
-      print(f"\nYour password has been hashed:\n* {line}")
+    hash = file.readline()
+  return hash
 
 password = getpass.getpass("Password: ").encode('utf-8')
 get_hashed_password(password)
-read_hashed_password()
+
+password_hash = read_hashed_password()
+print(password_hash)
