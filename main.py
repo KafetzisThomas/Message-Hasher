@@ -50,8 +50,6 @@ def verify_message(hash_algo, stored_hash, stored_salt, message_to_check):
     elif hash_algo in SHA_HASH_ALGORITHMS:
         hash_func = getattr(hashlib, hash_algo)
         hash_to_check = hash_func(salted_message).hexdigest()
-    else:
-        raise ValueError(f"[!] Unsupported hash algorithm: {hash_algo}")
 
     return hash_to_check == stored_hash
 

@@ -12,7 +12,7 @@ git clone https://github.com/KafetzisThomas/Message-Hasher.git
 
 ```bash
 ➜ message_to_hash='secret_password'  # Example plain text
-➜ hash_algo=bcrypt  # Example supported hash algorithm
+➜ hash_algo='bcrypt'  # Example supported hash algorithm
 
 # Correct way
 $ python main.py bcrypt '$hash_algo' '$message_to_hash'
