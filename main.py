@@ -9,6 +9,16 @@ import sys
 import bcrypt
 import hashlib
 
+# List of supported SHA hash algorithms
+SHA_HASH_ALGORITHMS = [
+    "md5",
+    "sha1",
+    "sha224",
+    "sha256",
+    "sha384",
+    "sha512",
+]
+
 
 def generate_salt(length=16):
     """Generate random salt"""
@@ -22,18 +32,9 @@ def hash_message(hash_algo, message):
 
     if hash_algo == "bcrypt":
         hashed_message = bcrypt.hashpw(message.encode(), bcrypt.gensalt(10))
-    elif hash_algo == "md5":
-        hashed_message = hashlib.md5(salted_message).hexdigest()
-    elif hash_algo == "sha1":
-        hashed_message = hashlib.sha1(salted_message).hexdigest()
-    elif hash_algo == "sha224":
-        hashed_message = hashlib.sha224(salted_message).hexdigest()
-    elif hash_algo == "sha256":
-        hashed_message = hashlib.sha256(salted_message).hexdigest()
-    elif hash_algo == "sha384":
-        hashed_message = hashlib.sha384(salted_message).hexdigest()
-    elif hash_algo == "sha512":
-        hashed_message = hashlib.sha512(salted_message).hexdigest()
+    elif hash_algo in SHA_HASH_ALGORITHMS:
+        hash_func = getattr(hashlib, hash_algo)
+        hashed_message = hash_func(salted_message).hexdigest()
     else:
         raise ValueError(f"Unsupported hash algorithm: {hash_algo}")
 
@@ -46,18 +47,9 @@ def verify_message(hash_algo, stored_hash, stored_salt, message_to_check):
 
     if hash_algo == "bcrypt":
         return bcrypt.checkpw(message_to_check.encode(), stored_hash)
-    elif hash_algo == "md5":
-        hash_to_check = hashlib.md5(salted_message).hexdigest()
-    elif hash_algo == "sha1":
-        hash_to_check = hashlib.sha1(salted_message).hexdigest()
-    elif hash_algo == "sha224":
-        hash_to_check = hashlib.sha224(salted_message).hexdigest()
-    elif hash_algo == "sha256":
-        hash_to_check = hashlib.sha256(salted_message).hexdigest()
-    elif hash_algo == "sha384":
-        hash_to_check = hashlib.sha384(salted_message).hexdigest()
-    elif hash_algo == "sha512":
-        hash_to_check = hashlib.sha512(salted_message).hexdigest()
+    elif hash_algo in SHA_HASH_ALGORITHMS:
+        hash_func = getattr(hashlib, hash_algo)
+        hash_to_check = hash_func(salted_message).hexdigest()
     else:
         raise ValueError(f"[!] Unsupported hash algorithm: {hash_algo}")
 
