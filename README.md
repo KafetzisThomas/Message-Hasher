@@ -11,17 +11,18 @@ git clone https://github.com/KafetzisThomas/Message-Hasher.git
 # Usage Notes
 
 ```bash
+➜ hash_algo='sha256'  # Example supported hash algorithm
 ➜ message_to_hash='secret_password'  # Example plain text
-➜ hash_algo='bcrypt'  # Example supported hash algorithm
 
 # Correct way
-$ python main.py bcrypt '$hash_algo' '$message_to_hash'
+$ python main.py '$hash_algo' '$message_to_hash'
 
 # Output:
 # Message: secret_password
-# Hash Algorithm: bcrypt
-# Salt (hex): 50ddbf97748e4652e1d66494bb1c4151
-# Hashed Message: b'$2b$10$xiQbysCUh4Y6iq3FlE.XZ.VrInDnQ3MvEz5n1Aeb84DX1LxfLFSoO'
+# Hash Algorithm: sha256
+# Salt (hex): b97d35d5e4850d6c95cdbf159884e09c
+# Hashed Message: 8e67dd1355714239acde098b6f1cf906bde45be6db826dc2caca7536e07ae844
+# Hashed Message (+salt): 46b9e120901d8e18e166135787072d6e29d488d0dcfd73100d6534429e03630d
 # Message is valid: True
 
 # Incorrect ways
